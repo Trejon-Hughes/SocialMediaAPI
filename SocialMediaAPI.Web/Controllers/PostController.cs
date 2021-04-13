@@ -39,5 +39,12 @@ namespace SocialMediaAPI.Web.Controllers
 
             return Ok();
         }
+
+        public IHttpActionResult Get(int id)
+        {
+            PostService noteService = CreatePostService();
+            var note = noteService.GetPostById(id);
+            return Ok(note);
+        }
     }
 }
