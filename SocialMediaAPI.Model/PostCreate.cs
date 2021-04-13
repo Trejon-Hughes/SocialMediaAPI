@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace SocialMediaAPI.Model
 {
-    public class CommentCreate
+    public class PostCreate
     {
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
-        [MaxLength(3000, ErrorMessage = "There are too many characters in this field."))]
+        [MaxLength(100, ErrorMessage = "There are too many characters in this field.")]
+        public string Title { get; set; }
+
+        [MaxLength(280)]
         public string Text { get; set; }
     }
 }
