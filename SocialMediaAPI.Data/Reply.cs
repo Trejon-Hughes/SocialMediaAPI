@@ -8,22 +8,20 @@ using System.Threading.Tasks;
 
 namespace SocialMediaAPI.Data
 {
-    public class Comment
+    public class Reply
     {
         [Key]
         public int Id { get; set; }
-        
+
         [Required]
         public string Text { get; set; }
 
         [Required]
         public Guid AuthorId { get; set; }
 
-        public virtual List<Reply> Replys { get; set; } = new List<Reply>();
-
-        [ForeignKey(nameof(Post))]
+        [ForeignKey(nameof(Comment))]
         [Required]
-        public int PostId { get; set; }
-        public virtual Post Post { get; set; }
+        public int CommentId { get; set; }
+        public virtual Post Comment { get; set; }
     }
 }
