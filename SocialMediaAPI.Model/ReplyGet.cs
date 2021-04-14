@@ -1,12 +1,11 @@
-﻿using SocialMedia;
-using SocialMediaAPI.Data;
+﻿using SocialMediaAPI.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialMedia.Models
+namespace SocialMediaAPI.Model
 {
     public class ReplyGet
     {
