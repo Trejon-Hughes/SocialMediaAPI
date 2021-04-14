@@ -27,14 +27,14 @@ namespace SocialMediaAPI.Web.Controllers
             return Ok(posts);
         }
 
-        public IHttpActionResult Post(PostCreate post)
+        public IHttpActionResult Post(PostCreate model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreatePostService();
 
-            if (!service.CreatePost(post))
+            if (!service.CreatePost(model))
                 return InternalServerError();
 
             return Ok();
@@ -45,6 +45,29 @@ namespace SocialMediaAPI.Web.Controllers
             PostService noteService = CreatePostService();
             var note = noteService.GetPostById(id);
             return Ok(note);
+        }
+
+        public IHttpActionResult Put(PostEdit model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreatePostService();
+
+            if (!service.UpdatePost(model))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreatePostService();
+
+            if (!service.DeletePost(id))
+                return InternalServerError();
+
+            return Ok();
         }
     }
 }
