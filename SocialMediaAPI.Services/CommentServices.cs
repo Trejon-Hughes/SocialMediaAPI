@@ -15,14 +15,14 @@ namespace SocialMediaAPI.Services
         {
             _authorId = authorId;
         }
-        public bool CreateComment(CommentCreate model)
+        public bool CreateComment(Post model)
         {
             var entity =
                 new Comment()
                 {
                     AuthorId = _authorId,
                     Text = model.Text,
-                    Id = model.Id
+                    PostId = model.PostId
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -31,20 +31,24 @@ namespace SocialMediaAPI.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public Comment GetCommentByPostId(int postId)
+        public IEnumerable<CommentListItem> GetCommentsById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
+                var query =
                     ctx
-                        .Posts
-                        .Single(e => e.PostId == postId && e.AuthorId == _authorId);
-                return
-                    new Comment
-                    {
-                        PostId = entity.PostId,
-                        Text = entity.Text
-                    };
+                        .Comments
+                        .Where(e => e.PostId == id)
+                        .Select(
+                            e =>
+                                new CommentListItem
+                                {
+                                    Id = e.PostId,
+                                    Text = e.Text
+                                }
+                        );
+
+                return query.ToArray();
             }
         }
     }
