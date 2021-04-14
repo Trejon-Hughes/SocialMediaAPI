@@ -78,7 +78,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <Compile Include="CommentServices.cs" />
+=======
     <Compile Include="PostService.cs" />
+>>>>>>> d43df3f54179b054997fc4e285398b4d2ebfae9b
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
