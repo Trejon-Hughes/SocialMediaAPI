@@ -1,4 +1,6 @@
-﻿using SocialMedia;
+﻿using Microsoft.Azure.Documents;
+using SocialMedia;
+using SocialMediaAPI.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
