@@ -72,6 +72,21 @@ namespace SocialMediaAPI.Services
             }
         }
 
+        public bool DeletePost(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Posts
+                        .Single(e => e.PostId == id && e.AuthorId == _userId);
+
+                ctx.Posts.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
         public bool UpdatePost(PostEdit model)
         {
             using (var ctx = new ApplicationDbContext())
